@@ -4,6 +4,7 @@ import "../../scss/global.scss";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import StoreProvider from "./StoreProvider";
+import Head from 'next/head'
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -23,6 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+      <meta name="enot" content="fa9dc15a" />
+      </Head>
       <body className={montserrat.className}>
         <div className="wrapper">
           <StoreProvider>
