@@ -21,7 +21,7 @@ const page = ({
   const { data: user } = useGetMeQuery();
 
   useEffect(() => {
-    const socket1 = io("http://localhost:3001", {
+    const socket1 = io("https://anyboost.online", {
       query: {
         chatId: searchParams.orderId,
       },
