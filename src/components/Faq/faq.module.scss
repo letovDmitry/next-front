@@ -1,0 +1,34 @@
+@import '../../../scss/breakpoints.scss';
+@import '../../../scss/colors.scss';
+@import '../../../scss/mixins.scss';
+@import '../../../scss/typhography.scss';
+
+.faq {
+    padding: 50px 0;
+    @media (max-width: 480px) {
+        padding: 0;
+    }
+
+}
+
+.wrapper {
+    border-bottom: 4px solid $darkSecondary;
+}
+  
+.title {
+    text-align: center;
+    font-weight: 700;
+    font-size: 48px;
+    @media (max-width: 1024px) {
+        font-size: 32px;
+    }
+} 
+
+.body {
+    padding: 70px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+

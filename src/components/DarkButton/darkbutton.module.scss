@@ -1,0 +1,32 @@
+@import '../../../scss/breakpoints.scss';
+@import '../../../scss/colors.scss';
+@import '../../../scss/mixins.scss';
+@import '../../../scss/typhography.scss';
+
+.button {
+
+}
+
+.btn {
+   background-color: $darkSecondary; 
+   padding: 18px 60px;
+   border-radius: 8px;
+   border: 2px solid rgba(75, 79, 91, 1);
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 14px;
+    text-align: center;
+    transition: all .3s ease;
+    @media (any-hover: hover) {
+        &:hover {
+          background: $primaryBlue;
+          border: 2px solid transparent;
+        }
+    }
+
+    @media (max-width: 650px) {
+        font-size: 12px;
+        width: 100%;
+    }
+
+}

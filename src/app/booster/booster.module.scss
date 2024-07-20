@@ -1,0 +1,78 @@
+@import '../../../scss/breakpoints.scss';
+@import '../../../scss/colors.scss';
+@import '../../../scss/mixins.scss';
+@import '../../../scss/typhography.scss';
+
+.member{
+    padding-top: 80px;
+}
+
+.heading {
+    text-align: left;
+}
+
+.welcome {
+    font-size: 20px;
+    text-transform: none;
+    font-weight: 500;
+    line-height: 25px;
+    color: rgba(255, 255, 255, 1);
+    @media (max-width: 1024px) {
+        font-size: 16px;
+        line-height: 20px;
+    }
+}
+
+.username {
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 1.1;
+    width: 380px;
+    @media (max-width: 1024px) {
+        font-size: 24px;
+    }
+}
+
+.content {
+    padding: 80px 0;
+    display: flex;
+    justify-content: space-between;
+    @media (max-width: 700px) {
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+}
+
+.body {
+    margin-bottom: 80px;
+}
+
+
+.text {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 25px;
+    color: rgba(255, 255, 255, 1);
+}
+
+.link {
+    margin-top: 48px;
+    padding: 18px 42px;
+    border: 2px solid rgba(75, 79, 91, 1);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19px;
+    border-radius: 8px;
+}
+
+.linkSupport {
+    margin-top: 48px;
+    padding: 18px 42px;
+    border: 2px solid #fff;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19px;
+    border-radius: 8px;
+}
+
+

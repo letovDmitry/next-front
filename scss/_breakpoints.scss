@@ -1,0 +1,17 @@
+@use 'sass:math';
+@import './mixins';
+
+$minWidth: 320;
+// Template width
+$maxWidth: 1920;
+$maxWidthContainer: 1400;
+$containerPadding: 30;
+
+$responsiveType: 1;
+
+$containerWidth: $maxWidthContainer + $containerPadding;
+
+$pc: em($containerWidth);
+$tablet: em(991.98);
+$mobile: em(767.98);
+$mobileSmall: em(479.98);

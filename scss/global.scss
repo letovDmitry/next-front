@@ -1,0 +1,236 @@
+@use 'sass:math';
+@import './mixins';
+@import './colors';
+@import './normalize';
+@import './typhography';
+@import './breakpoints';
+
+@if ($responsiveType==1) {
+  [class*='container'] {
+    @if ($maxWidthContainer>0) {
+      max-width: rem($maxWidthContainer);
+      box-sizing: content-box;
+      margin: 0 auto;
+    }
+    @if ($containerPadding>0) {
+      padding: 0 rem(math.div($containerPadding, 2));
+    }
+  }
+} @else {
+  [class*='__container'] {
+    margin: 0 auto;
+    @if ($maxWidthContainer>0) {
+      max-width: rem($maxWidthContainer);
+      box-sizing: content-box;
+    } @else {
+      @if ($containerPadding>0) {
+        padding: 0 rem(math.div($containerPadding, 2));
+      }
+    }
+    @media (max-width: $pc) {
+      max-width: rem(970);
+    }
+    @media (max-width: $tablet) {
+      max-width: rem(750);
+    }
+    @media (max-width: $mobile) {
+      max-width: none;
+      @if ($containerPadding>0 and $maxWidthContainer>0) {
+        padding: 0 rem(math.div($containerPadding, 2));
+      }
+    }
+  }
+}
+
+
+body {
+  font-weight: 500;
+  background-color: $bgPrimaryBlue;
+  font-family: $fontFamily;
+  color: $primaryWhite;
+  .lock & {
+    overflow: hidden;
+    touch-action: none;
+  }
+}
+
+.flexible {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  @media (max-width: 700px){
+    flex-wrap: wrap-reverse;
+    gap: 34px;
+  }
+}
+
+.selected {
+  background-color: $primaryBlue!important;
+  border: 1px solid transparent!important;
+}
+
+.tabWrapper {
+    background-color: rgba(23, 28, 37, 1);
+}
+
+.overflow {
+  overflow: auto!important;
+  height: 100%;
+}
+
+
+.react-tabs {
+  // margin-top: 100px;
+  @media (max-width: 600px) {
+        margin-top: 0;
+  }
+}
+
+.react-tabs__tab-list {
+  display: flex;
+  gap: 40px;
+  line-height: 20px;
+  @media (max-width:480px) {
+    gap: 20px;
+  }
+  @media (max-width:335px) {
+    gap: 15px;
+  }
+}
+
+.react-tabs__tab {
+  font-weight: 600;
+  font-size: 18px;
+  height: inherit;
+  cursor: pointer;
+  text-transform: uppercase;
+  height: 80px;
+  letter-spacing: 1px;
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
+}
+
+.react-tabs__tab--selected {
+
+  border-bottom: 2px solid $primaryBlue;
+}
+
+
+
+.rts___tabs___container {
+  padding: 0!important;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.rts___nav___btn {
+  height: 50px;
+  padding: 22px;
+  font-size: 30px!important;
+  font-weight: 100!important;
+  color: #fff!important;
+  transition: all 0.3s ease-in-out!important;
+}
+
+button:disabled.rts___btn, .rts___nav___btn:disabled, button[disabled].rts___btn {
+  cursor: not-allowed;
+  color: #878787!important;
+  pointer-events: none;
+  font-size: 30px!important;
+}
+
+.rts___nav___btn___container {
+  padding: 0 5px 0 0px!important;
+}
+
+.rts___nav___btn:hover {
+  background-color: $primaryBlue!important;
+  transition: .5s all;
+}
+
+.rts___btn {
+  border-radius: 10px!important;
+  border: 1px solid rgba(75, 79, 91, 1)!important;
+}
+
+.rts___tab {
+  padding: 15px 40px!important;
+}
+
+.rts___tab___selected {
+  background-color: $primaryBlue!important;
+}
+
+.animate__animated {
+  -webkit-animation-duration: 500ms;
+  animation-duration: 500ms;
+
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+.animate__fadeInLeft {
+  -webkit-animation-name: fadeInLeft;
+  animation-name: fadeInLeft;
+}
+
+
+// wrapper ============================================================================================================================================================================================================================================================================================================================================================================================================================================
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  > main {
+    flex: 1 1 auto;
+  }
+  > * {
+    min-width: 0;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;               
+}
+
+::-webkit-scrollbar-track {
+  background: #fff;       
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(75, 79, 91, 1);   
+  border-radius: 20px;       
+  border: 2px solid #fff; 
+}
+
+html {
+  scroll-behavior: smooth;
+}

@@ -1,0 +1,35 @@
+@import '../../scss/colors.scss';
+
+.notFound {
+    padding: 140px 0;
+}
+
+.body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 50px;
+    h1 {
+        font-size: 30px;
+        text-align: center;
+    }
+    span {
+        font-size: 180px;
+        font-weight: 700;
+        @media (max-width: 400px) {
+            font-size: 100px;
+        }
+    }
+    a {
+        padding: 18px 24px;
+        background-color: $primaryBlue;
+        border-radius: 8px;
+        transition: all .3s ease;
+        @media (any-hover: hover) {
+            &:hover {
+              opacity: .7;
+            }
+          }
+    }
+}

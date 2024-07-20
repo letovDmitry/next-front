@@ -1,0 +1,9 @@
+@import '../../../scss/breakpoints.scss';
+@import '../../../scss/colors.scss';
+@import '../../../scss/mixins.scss';
+@import '../../../scss/typhography.scss';
+
+.boost {
+    padding: 80px 0;
+    background-color: $bgLightBlue!important;
+}

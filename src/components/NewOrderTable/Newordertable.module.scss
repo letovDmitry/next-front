@@ -1,0 +1,86 @@
+@import '../../../scss/colors.scss';
+
+
+.dataTable {
+    width: 100%;
+    border-collapse: collapse;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+    th:last-child {
+        text-align: right;
+    }
+
+}
+
+.dataTable th, .dataTable td {
+    padding: 24px;
+    text-align: left;
+    line-height: 22px!important;
+    @media (max-width: 992px) {
+        padding: 24px 10px;
+        min-width: 230px;
+        
+  }
+}
+
+.dataTable th {
+    background-color: #171C25!important;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    color: #4B4F5B;
+}
+
+.tableRow {
+    &:nth-child(odd) {
+        background-color: #0D1019;
+        border-radius: 8px!important;
+    }
+    td:last-child {
+        text-align: right;
+    }
+}
+
+.btn {
+    background-color: $primaryBlue;
+    padding: 8px 12px;
+    text-wrap: nowrap;
+    border-radius: 8px;
+}
+
+.noOrders {
+    a {
+        text-decoration: underline;
+        text-decoration-color: $primaryBlue
+    }
+}
+
+.pagination {
+    display: flex;
+    gap: 10px;
+    margin-top: 50px;
+   
+        li {
+            cursor: pointer;
+            padding: 10px!important;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background-color: #181C24;
+            border: 1px solid #4B4F5B;
+            text-align: center;
+            a {
+                display: block;
+                text-align: center;
+                padding: 12px 15px;
+                border-radius: 8px;
+            }
+            
+        }
+   
+}
+

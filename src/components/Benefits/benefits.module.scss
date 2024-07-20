@@ -1,0 +1,43 @@
+@import '../../../scss/breakpoints.scss';
+@import '../../../scss/colors.scss';
+@import '../../../scss/mixins.scss';
+@import '../../../scss/typhography.scss';
+
+.about {
+    padding: 90px 0;
+}
+
+.body {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    @media (max-width: 900px) {
+        flex-wrap: wrap;
+    }
+}
+
+.item {
+    width: 33.333%;
+    border-radius: 20px;
+    border: 1px solid rgba(75, 79, 91, 1);
+    padding: 30px 30px 80px 30px;
+    transition: all .3s ease;
+    @media (any-hover: hover) {
+        &:hover {
+          background: $primaryBlue;
+        }
+      }
+      @media (max-width: 900px) {
+        width: 100%;
+      }
+ 
+}
+.title {
+    font-size: 32px;
+    font-weight: 600;
+}
+.text {
+    margin-top: 20px;
+    font-weight: 500;
+    font-size: 16px;
+}

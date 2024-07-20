@@ -1,0 +1,73 @@
+@import '../../../scss/breakpoints.scss';
+@import '../../../scss/colors.scss';
+@import '../../../scss/mixins.scss';
+@import '../../../scss/typhography.scss';
+
+.register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 0;
+  @media (max-width: 480px) {
+    width: 100%;
+    display: block;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  width: 400px;
+  @media (max-width: 1024px) {
+    width: 400px;
+  }
+  @media (max-width: 480px) {
+    width: 100%;
+  }
+}
+
+.heading {
+  text-align: left;
+}
+
+.welcome {
+  font-size: 20px;
+  text-transform: none;
+  font-weight: 500;
+  line-height: 25px;
+  color: rgba(255, 255, 255, 1);
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
+}
+
+.text {
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1.1;
+  text-transform: none;
+  @media (max-width: 1024px) {
+    font-size: 24px;
+  }
+  @media (max-width: 480px) {
+    font-size: 20px;
+    width: 100%;
+  }
+}
+
+
+
+.btn {
+  width: 100%;
+  padding: 18px 42px;
+  background-color: $primaryBlue;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+}

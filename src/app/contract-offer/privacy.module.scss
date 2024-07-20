@@ -1,0 +1,53 @@
+.privacy {
+    padding: 100px 0;
+}
+
+.title {
+    text-align: center;
+    font-size: 50px;
+    @media (max-width:768px) {
+        font-size: 35px;
+        line-height: 36px;
+        text-align: left;
+    }
+    @media (max-width:520px) {
+        font-size: 21px;
+        line-height: 36px;
+    }
+}
+
+.body {
+    margin-top: 100px;
+    line-height: 20px;
+    p {
+        padding: 10px 0;
+    }
+    ul {
+        li {
+            padding: 10px;
+            margin-left: 17px;
+            list-style: disc;
+        }
+    }
+}
+
+.heading {
+    font-size: 27px;
+    margin-bottom: 30px;
+    line-height: 36px;
+    &:not(:first-child) {
+        margin-top: 30px;
+    }
+    @media (max-width:520px) {
+        font-size: 22px;
+    }
+}
+
+.regards {
+    margin-top: 50px;
+    font-size: 28px;
+    line-height: 30px;
+    @media (max-width:520px) {
+        font-size: 22px;
+    }
+}

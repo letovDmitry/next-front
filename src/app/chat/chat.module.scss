@@ -1,0 +1,150 @@
+.chat {
+  padding: 80px 0;
+}
+
+.content {
+  max-width: 1080px;
+  margin: 0 auto;
+  @media (max-width: 670px) {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+.heading {
+  padding: 30px 48px;
+  background-color: #181c24;
+  border: 1px solid #4b4f5b;
+  border-radius: 8px;
+  @media (max-width: 1024px) {
+    padding: 30px 20px;
+  }
+}
+
+.orderNumber {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 26px;
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+.name {
+  font-weight: 600;
+  font-size: 32px;
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
+}
+
+.chatBody {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 32px;
+  height: 500px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 0 10px;
+}
+
+.incomingText {
+  background-color: #181c24;
+  border: 1px solid #4b4f5b;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  border-radius: 8px;
+  padding: 13px 16px 16px 16px;
+  width: 100%;
+  max-width: 600px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  @media (max-width: 1024px) {
+    font-size: 14px;
+  }
+  @media (max-width: 670px) {
+    max-width: 80%;
+  }
+  @media (max-width: 480px) {
+    max-width: 100%;
+  }
+}
+
+.sentText {
+  text-align: left;
+  width: 100%;
+  max-width: 600px;
+  background-color: #4971ff;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  padding: 13px 16px 16px 16px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  @media (max-width: 1024px) {
+    font-size: 14px;
+  }
+  @media (max-width: 670px) {
+    max-width: 80%;
+  }
+  @media (max-width: 480px) {
+    max-width: 100%;
+  }
+}
+
+.sentMessage {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+
+.date {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  color: #4b4f5b;
+}
+
+.chatActions {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.sendBtn {
+  background-color: #4971ff;
+  width: 54px;
+  height: 54px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.textArea {
+  border: 1px solid #4b4f5b;
+  padding: 11px;
+  border-radius: 8px;
+  background-color: #181c24;
+  color: #fff;
+  resize: none;
+  width: 90%;
+  overflow: hidden;
+  min-height: 54px;
+  @media(max-width:480px) {
+    width: 78%;
+  }
+}
+
+.attention {
+  margin-top: 10px;
+  color: #4b4f5b;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 500;
+}
