@@ -21,7 +21,7 @@ const ChatPage = ({
   const { data: user } = useGetMeQuery();
 
   useEffect(() => {
-    const socket1 = io("https://anyboost.ru/api/", {
+    const socket1 = io("https://anyboost.ru/api", {
       query: {
         chatId: searchParams.orderId,
       },
