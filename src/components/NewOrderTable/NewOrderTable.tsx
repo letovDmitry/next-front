@@ -30,11 +30,9 @@ const NewOrderTable = () => {
   ) : [];
 
   return (
-    <div className="wrap">
       <div className="container">
-
         {data && data.length > 0 ? (
-        <div className="oveflow">          <>
+        <div className="overflow">          <>
         <table className={styles.dataTable}>
           <thead>
             <tr>
@@ -85,7 +83,6 @@ const NewOrderTable = () => {
           <div><p>Ожидание новых заказов...</p></div>
         )}
       </div>
-    </div>
   );
 };
 

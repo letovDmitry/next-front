@@ -1,5 +1,12 @@
 import React from 'react';
 import styles from './privacy.module.scss';
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Политика Конфиденциальности",
+    description: "Политика конфиденциальности для сайта anyboost.ru",
+  };
+
 
 const Page = () => {
   return (

@@ -80,3 +80,23 @@
     display: flex;
     gap: 10px;
 }
+
+.copy {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.rights {
+    @media (max-width: 768px) {
+        font-size: 14px;
+    }
+}
+
+.desc {
+    font-size: 14px;
+    color: #cecece;
+    @media (max-width: 768px) {
+        font-size: 12px;
+    }
+}

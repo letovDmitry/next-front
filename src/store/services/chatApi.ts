@@ -9,7 +9,7 @@ import {
 import Cookies from "js-cookie";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://anyboost.online/api/chat",
+  baseUrl: "https://anyboost.ru/api/chat",
 });
 
 const baseQueryWithReauth: BaseQueryFn<

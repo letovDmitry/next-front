@@ -1,8 +1,14 @@
-'use client'
 import styles from './register-success.module.scss';
 import Link from 'next/link';
+import type { Metadata } from "next";
 
-const Register = () => {
+export const metadata: Metadata = {
+    title: "Успешная Регистрация",
+    description: "Успешная Регистрация на сайта anyboost.ru",
+  };
+
+
+const page = () => {
   return (
     <div className={styles.register}>
       <div className="container">
@@ -20,4 +26,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default page;

@@ -9,7 +9,7 @@ import {
 import Cookies from "js-cookie";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://anyboost.online/api/auth",
+  baseUrl: "https://anyboost.ru/api/auth",
 });
 
 export const authApi = createApi({

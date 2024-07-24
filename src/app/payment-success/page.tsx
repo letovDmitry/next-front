@@ -3,6 +3,14 @@ import styles from './payment.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Успешная Оплата",
+    description: "Успешная Оплата на сайте anyboost.ru",
+  };
+
+
 const PaymentSuccess = () => {
   return (
     <div className={styles.notFound}>

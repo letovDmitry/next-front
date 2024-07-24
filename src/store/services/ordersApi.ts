@@ -30,7 +30,7 @@ export interface IOrder {
 }
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://anyboost.online/api/order",
+  baseUrl: "https://anyboost.ru/api/order",
 });
 
 const baseQueryWithReauth: BaseQueryFn<

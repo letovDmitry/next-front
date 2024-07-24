@@ -24,7 +24,7 @@ export interface IUser {
 }
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://anyboost.online/api/users",
+  baseUrl: "https://anyboost.ru/api/users",
 });
 
 const baseQueryWithReauth: BaseQueryFn<
