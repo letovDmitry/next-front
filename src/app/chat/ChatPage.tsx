@@ -25,7 +25,7 @@ const ChatPage = ({
       query: {
         chatId: searchParams.orderId,
       },
-      path: '/api'
+      path: '/api/socket.io'
     });
     const onMessage = (data) => {
       refetch();
