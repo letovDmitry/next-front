@@ -22,11 +22,11 @@ const ChatPage = ({
 
   useEffect(() => {
     refetch()
-    const socket1 = io("http://localhost:3001", {
+    const socket1 = io("https://anyboost.ru", {
       query: {
         chatId: searchParams.orderId,
       },
-      // path: '/api/socket.io'
+      path: '/api/socket.io'
     });
 
     const onMessage = (data) => {
