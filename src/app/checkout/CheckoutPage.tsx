@@ -73,7 +73,7 @@ const CheckoutPage = ({
     })
       .unwrap()
       .then((r) => {
-        router.push("/payment-success");
+        router.push(r.confirmation_url);
       });
   };
 
