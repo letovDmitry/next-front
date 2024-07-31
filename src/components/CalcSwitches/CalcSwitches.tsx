@@ -6,12 +6,12 @@ import CalcSwitch from '../CalcSwitch/CalcSwitch';
 
 const CalcSwitches = ({ options, handleOptionChange }) => {
   const switchData = [
-    { label: 'БЕЗ ПЕРЕДАЧИ АККАУНТА', option: 'noAccountTransfer', tooltipText: 'Описание' },
-    { label: 'В соло', option: 'solo', tooltipText: 'Описание' },
-    { label: 'STEAM OFFLINE', option: 'steamOffline', tooltipText: 'Описание' },
-    { label: 'Priority', option: 'priority', tooltipText: 'Описание' },
-    { label: 'Экспресс', option: 'express', tooltipText: 'Описание' },
-    { label: 'Стрим', option: 'stream', tooltipText: 'Описание' },
+    { label: 'БЕЗ ПЕРЕДАЧИ АККАУНТА', option: 'noAccountTransfer', tooltipText: 'Эта услуга позволяет вам играть с нами в лобби, без передачи данных вашего аккаунта' },
+    { label: 'В соло', option: 'solo', tooltipText: 'Бустер будет играть на вашем аккаунте один, в соло' },
+    { label: 'STEAM OFFLINE', option: 'steamOffline', tooltipText: 'Бустер выйдет из сети или поставит "Невидимку" в Steam во время выполнения вашего заказа' },
+    { label: 'Priority', option: 'priority', tooltipText: 'Ваш заказ становится более приоритетным относительно другого объема заказов' },
+    { label: 'Экспресс', option: 'express', tooltipText: 'Максимальная скорость выполнения заказа; Приступим к выполнению сразу после оплаты!' },
+    { label: 'Стрим', option: 'stream', tooltipText: 'Бустер включит закрытый прямой эфир только для вас на платформе Twitch во время выполнения заказа' },
   ];
 
   const renderSwitches = (startIndex, endIndex) => {
@@ -22,6 +22,7 @@ const CalcSwitches = ({ options, handleOptionChange }) => {
         checked={options[option]}
         onChange={() => handleOptionChange(option)}
         tooltipText={tooltipText}
+        id={option} // Unique identifier for each tooltip
       />
     ));
   };

@@ -21,15 +21,18 @@ const ChatPage = ({
   const { data: user } = useGetMeQuery();
 
   useEffect(() => {
-    const socket1 = io("https://anyboost.ru", {
+    refetch()
+    const socket1 = io("http://localhost:3001", {
       query: {
         chatId: searchParams.orderId,
       },
-      path: '/api/socket.io'
+      // path: '/api/socket.io'
     });
+
     const onMessage = (data) => {
       refetch();
     };
+
     socket1.on("message", onMessage);
 
     return () => {
@@ -38,6 +41,10 @@ const ChatPage = ({
   }, []);
 
   const handleSendMessage = () => {
+    if (text.trim().length === 0) {
+      setText("");
+      return;
+    }
     socket.emit("message", {
       senderId: user?.id,
       orderId: searchParams.orderId,

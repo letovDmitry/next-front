@@ -157,22 +157,6 @@ const AccountSettings = ({ user }: IProps) => {
                 alt="toggle visibility"
               />
             </div>
-            <div className={styles.switches}>
-              <div className={styles.switchBody}>
-                <div className={styles.column}>
-                  <label className={styles.switchLabel}>
-                    <input className={styles.switch} type="checkbox" />
-                    <span className={styles.slider}></span>
-                    <span className={styles.switchTitle}>Привязать steam</span>
-                  </label>
-                  <label className={styles.switchLabel}>
-                    <input className={styles.switch} type="checkbox" />
-                    <span className={styles.slider}></span>
-                    <span className={styles.switchTitle}>Включить уведомления</span>
-                  </label>
-                </div>
-              </div>
-            </div>
           </form>
         </div>
         <div className={styles.formBtns}>

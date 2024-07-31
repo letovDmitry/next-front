@@ -9,7 +9,7 @@ import {
 import Cookies from "js-cookie";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://anyboost.ru/api/chat",
+  baseUrl: "http://localhost:3001/chat",
 });
 
 const baseQueryWithReauth: BaseQueryFn<
@@ -45,7 +45,21 @@ export const chatApi = createApi({
       },
       providesTags: ["Messages"],
     }),
+
+    getUnseenMessagesByOrderId: builder.query<any, void>({
+      query() {
+        const access_token = Cookies.get("access_token");
+        return {
+          url: `/unseen`,
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        };
+      },
+      providesTags: ["Messages"],
+    }),
   }),
 });
 
-export const { useGetMessagesByOrderIdQuery } = chatApi;
+export const { useGetMessagesByOrderIdQuery, useLazyGetMessagesByOrderIdQuery, useGetUnseenMessagesByOrderIdQuery } = chatApi;

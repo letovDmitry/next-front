@@ -27,10 +27,12 @@ export interface IOrder {
 
   boosterId?: number;
   booster: IUser;
+
+  seenBy?: IUser[]
 }
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://anyboost.ru/api/order",
+  baseUrl: "http://localhost:3001/order",
 });
 
 const baseQueryWithReauth: BaseQueryFn<

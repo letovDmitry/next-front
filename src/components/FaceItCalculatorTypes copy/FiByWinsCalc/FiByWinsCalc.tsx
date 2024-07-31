@@ -5,6 +5,7 @@ import styles from "../../Calculator/calculator.module.scss";
 import Image from "next/image";
 import { Tooltip } from "react-tooltip";
 import Link from "next/link";
+import CalcSwitches from "@/components/CalcSwitches/CalcSwitches";
 
 const FiByWinsCalc = () => {
   const [options, setOptions] = useState({
@@ -94,6 +95,12 @@ const FiByWinsCalc = () => {
     setWins(value);
   };
 
+  const handleSubmit = (e) => {
+    if (calculatePrice() === "0.00") {
+      e.preventDefault();
+    }
+  };
+
   return (
     <div className={styles.body}>
       <div className={styles.calcs}>
@@ -155,168 +162,10 @@ const FiByWinsCalc = () => {
         </div>
       </div>
       <div className={styles.switches}>
-        <div className={styles.switchBody}>
-          <div className={styles.column}>
-            <label className={styles.switchLabel}>
-              <input
-                className={styles.switch}
-                type="checkbox"
-                checked={options.noAccountTransfer}
-                onChange={() => handleOptionChange("noAccountTransfer")}
-              />
-              <span className={styles.slider}></span>
-              <span className={styles.switchTitle}>БЕЗ ПЕРЕДАЧИ АККАУНТА</span>
-              <a className="tooltip">
-                <Image
-                  className={styles.switchTooltip}
-                  src="./calc/info.svg"
-                  width={14}
-                  height={14}
-                  alt="информация"
-                ></Image>
-              </a>
-              <Tooltip
-                anchorSelect=".tooltip"
-                style={{ backgroundColor: "rgba(73, 113, 255, 1)" }}
-                place="top"
-              >
-                Описание
-              </Tooltip>
-            </label>
-            <label className={styles.switchLabel}>
-              <input
-                className={styles.switch}
-                type="checkbox"
-                checked={options.solo}
-                onChange={() => handleOptionChange("solo")}
-              />
-              <span className={styles.slider}></span>
-              <span className={styles.switchTitle}>В соло</span>
-              <a className="tooltip">
-                <Image
-                  className={styles.switchTooltip}
-                  src="./calc/info.svg"
-                  width={14}
-                  height={14}
-                  alt="информация"
-                ></Image>
-              </a>
-              <Tooltip
-                anchorSelect=".tooltip"
-                style={{ backgroundColor: "rgba(73, 113, 255, 1)" }}
-                place="top"
-              >
-                Описание
-              </Tooltip>
-            </label>
-            <label className={styles.switchLabel}>
-              <input
-                className={styles.switch}
-                type="checkbox"
-                checked={options.steamOffline}
-                onChange={() => handleOptionChange("steamOffline")}
-              />
-              <span className={styles.slider}></span>
-              <span className={styles.switchTitle}>STEAM OFFLINE</span>
-              <a className="tooltip">
-                <Image
-                  className={styles.switchTooltip}
-                  src="./calc/info.svg"
-                  width={14}
-                  height={14}
-                  alt="информация"
-                ></Image>
-              </a>
-              <Tooltip
-                anchorSelect=".tooltip"
-                style={{ backgroundColor: "rgba(73, 113, 255, 1)" }}
-                place="top"
-              >
-                Описание
-              </Tooltip>
-            </label>
-          </div>
-          <div className={styles.column}>
-            <label className={styles.switchLabel}>
-              <input
-                className={styles.switch}
-                type="checkbox"
-                checked={options.priority}
-                onChange={() => handleOptionChange("priority")}
-              />
-              <span className={styles.slider}></span>
-              <span className={styles.switchTitle}>Priority</span>
-              <a className="tooltip">
-                <Image
-                  className={styles.switchTooltip}
-                  src="./calc/info.svg"
-                  width={14}
-                  height={14}
-                  alt="информация"
-                ></Image>
-              </a>
-              <Tooltip
-                anchorSelect=".tooltip"
-                style={{ backgroundColor: "rgba(73, 113, 255, 1)" }}
-                place="top"
-              >
-                Описание
-              </Tooltip>
-            </label>
-            <label className={styles.switchLabel}>
-              <input
-                className={styles.switch}
-                type="checkbox"
-                checked={options.express}
-                onChange={() => handleOptionChange("express")}
-              />
-              <span className={styles.slider}></span>
-              <span className={styles.switchTitle}>Экспресс</span>
-              <a className="tooltip">
-                <Image
-                  className={styles.switchTooltip}
-                  src="./calc/info.svg"
-                  width={14}
-                  height={14}
-                  alt="информация"
-                ></Image>
-              </a>
-              <Tooltip
-                anchorSelect=".tooltip"
-                style={{ backgroundColor: "rgba(73, 113, 255, 1)" }}
-                place="top"
-              >
-                Описание
-              </Tooltip>
-            </label>
-            <label className={styles.switchLabel}>
-              <input
-                className={styles.switch}
-                type="checkbox"
-                checked={options.stream}
-                onChange={() => handleOptionChange("stream")}
-              />
-              <span className={styles.slider}></span>
-              <span className={styles.switchTitle}>Стрим</span>
-              <a className="tooltip">
-                <Image
-                  className={styles.switchTooltip}
-                  src="./calc/info.svg"
-                  width={14}
-                  height={14}
-                  alt="информация"
-                ></Image>
-              </a>
-              <Tooltip
-                anchorSelect=".tooltip"
-                style={{ backgroundColor: "rgba(73, 113, 255, 1)" }}
-                place="top"
-              >
-                Описание
-              </Tooltip>
-            </label>
-          </div>
-        </div>
+      <CalcSwitches
+          options={options}
+          handleOptionChange={handleOptionChange}
+        />
         <div className={styles.priceColumn}>
           <div className={styles.priceText}>ИТОГОВАЯ ЦЕНА:</div>
           <div className={styles.price}>{calculatePrice()} ₽</div>
@@ -353,6 +202,7 @@ const FiByWinsCalc = () => {
                   price: calculatePrice(),
                 },
               }}
+              onClick={handleSubmit}
             >
               ЗАКАЗАТЬ БУСТ
             </Link>

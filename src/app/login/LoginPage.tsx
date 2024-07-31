@@ -1,4 +1,3 @@
-
 'use client'
 
 import React, { useState } from "react";
@@ -6,6 +5,7 @@ import styles from "./login.module.scss";
 import Link from "next/link";
 import { useSignInMutation } from "@/store/services/authApi";
 import { useRouter } from "next/navigation";
+import { toast, Toaster } from 'react-hot-toast';
 
 const LoginPage = () => {
     const [phoneOrEmail, setPhoneOrEmail] = useState("");
@@ -35,7 +35,13 @@ const LoginPage = () => {
             window.location.reload();
           }
         })
-        .catch(() => setIsError("Неверная почта или пароль"));
+        .catch((error) => {
+          if (error?.data.statusCode === 403 && error?.data.message === "Not approved") {
+            toast.error("Ожидаем модерацию");
+          } else  {
+            setIsError("Неверная почта или пароль");
+          }
+        });
     };
   
     const togglePasswordVisibility = () => {
@@ -48,6 +54,7 @@ const LoginPage = () => {
   
     return (
       <div className={styles.login}>
+        <Toaster />
         <div className="container">
           <div className={styles.content}>
             <div className={styles.heading}>

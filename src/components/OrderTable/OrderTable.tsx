@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./ordertable.module.scss";
 import Link from "next/link";
 import ReactPaginate from 'react-paginate';
@@ -8,11 +8,14 @@ import {
   useGetOrdersForMemberQuery,
 } from "@/store/services/ordersApi";
 import { useGetMeQuery } from "@/store/services/userApi";
+import { useGetUnseenMessagesByOrderIdQuery, useLazyGetMessagesByOrderIdQuery } from "@/store/services/chatApi";
+import { socket } from "@/lib/socket";
 
 const OrderTable = () => {
   const { data: user } = useGetMeQuery();
+  const { data: unseenMessages, refetch: refetchUnseen } = useGetUnseenMessagesByOrderIdQuery();
   const { data: boosterOrders, refetch } = useGetOrdersForBoosterQuery();
-  const { data: memberOrders } = useGetOrdersForMemberQuery();
+  const { data: memberOrders, refetch: refetchMember } = useGetOrdersForMemberQuery();
 
   const [completeOrder] = useCompleteOrderForBoosterMutation();
   const data = user?.isBooster ? boosterOrders : memberOrders;
@@ -35,6 +38,21 @@ const OrderTable = () => {
     currentPage * ordersPerPage,
     (currentPage + 1) * ordersPerPage
   );
+
+  useEffect(() => {
+    refetchUnseen();
+    const onNewMessage = (data) => {
+      refetchUnseen();
+      refetch();
+      refetchMember();
+    };
+    
+    socket.on("newMessage", onNewMessage);
+
+    return () => {
+      socket.off("newMessage", onNewMessage);
+    };
+  }, []);
 
 
   return (
@@ -83,7 +101,9 @@ const OrderTable = () => {
                       {row.status === "Поиск бустера" ? (
                         <img src="/inputs/mute.svg" alt="mute" />
                       ) : (
-                        <Link
+                        <div className={styles.chat}>
+                          { unseenMessages?.filter(m => m.id === row.id)[0]?.unseen > 0 && <div className={styles.unseenmsg}>{unseenMessages?.filter(m => m.id === row.id)[0]?.unseen}</div> }
+                          <Link
                           href={{
                             pathname: "/chat",
                             query: {
@@ -95,6 +115,7 @@ const OrderTable = () => {
                         >
                           <img src="/inputs/unmute.svg" alt="unmute" />
                         </Link>
+                        </div>
                       )}
                     </td>
                   </tr>

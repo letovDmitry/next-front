@@ -7,7 +7,7 @@ import { Tooltip } from "react-tooltip";
 import Link from "next/link";
 import CalcSwitches from "@/components/CalcSwitches/CalcSwitches";
 
-const FiByLevelCalc = () => {
+const PartnersCalibrationCalc = () => {
   const [options, setOptions] = useState({
     noAccountTransfer: false,
     solo: false,
@@ -18,17 +18,11 @@ const FiByLevelCalc = () => {
   });
 
   const [currentRatingIndex, setCurrentRatingIndex] = useState(0);
-  const [desiredRatingIndex, setDesiredRatingIndex] = useState(0);
-  const [price, setPrice] = useState(0);
+  const [wins, setWins] = useState(0);
 
   const basePrice = 0;
   const calculatePrice = () => {
-    let price = basePrice;
-    for (let i = currentRatingIndex + 1; i <= desiredRatingIndex; i++) {
-      price += levelPrices[elo[i]];
-    }
-
-    if (options.noAccountTransfer) price *= 1.2;
+    let price = basePrice + wins * 75;
     if (options.solo) price *= 1.55;
     if (options.priority) price *= 1.25;
     if (options.express) price *= 1.6;
@@ -46,61 +40,74 @@ const FiByLevelCalc = () => {
   };
 
   const elo = [
-    "1 уровень",
-    "2 уровень",
-    "3 уровень",
-    "4 уровень",
-    "5 уровень",
-    "6 уровень",
-    "7 уровень",
-    "8 уровень",
-    "9 уровень",
-    "10 уровень",
+    "Серебро-1",
+    "Серебро-2",
+    "Серебро-3",
+    "Серебро-4",
+    "Серебро-Элита",
+    "Серебро-Великий Магистр",
+    "Золотая Звезда-1",
+    "Золотая Звезда-2",
+    "Золотая Звезда-3",
+    "Золотая Звезда-Магистр",
+    "Магистр Хранитель-1",
+    "Магистр Хранитель-2",
+    "Магистр Хранитель-Элита",
+    "Заслуженный Магистр-Хранитель",
+    "Легендарный Беркут",
+    "Легендарный Беркут-Магистр",
+    "Великий Магистр Высшего Ранга",
+    "Всемирная Элита",
   ];
 
   const images = [
-    "/calc/faceit/1.png",
-    "/calc/faceit/2.png",
-    "/calc/faceit/3.png",
-    "/calc/faceit/4.png",
-    "/calc/faceit/5.png",
-    "/calc/faceit/6.png",
-    "/calc/faceit/7.png",
-    "/calc/faceit/8.png",
-    "/calc/faceit/9.png",
-    "/calc/faceit/10.png",
+    "/calc/partner-ranks/1.png",
+    "/calc/partner-ranks/2.png",
+    "/calc/partner-ranks/3.png",
+    "/calc/partner-ranks/4.png",
+    "/calc/partner-ranks/5.png",
+    "/calc/partner-ranks/6.png",
+    "/calc/partner-ranks/7.png",
+    "/calc/partner-ranks/8.png",
+    "/calc/partner-ranks/9.png",
+    "/calc/partner-ranks/10.png",
+    "/calc/partner-ranks/11.png",
+    "/calc/partner-ranks/12.png",
+    "/calc/partner-ranks/13.png",
+    "/calc/partner-ranks/14.png",
+    "/calc/partner-ranks/15.png",
+    "/calc/partner-ranks/16.png",
+    "/calc/partner-ranks/17.png",
+    "/calc/partner-ranks/18.png",
   ];
 
-  const levelPrices = {
-    "1 уровень": 0,
-    "2 уровень": 430,
-    "3 уровень": 510,
-    "4 уровень": 550,
-    "5 уровень": 570,
-    "6 уровень": 650,
-    "7 уровень": 810,
-    "8 уровень": 990,
-    "9 уровень": 1450,
-    "10 уровень": 1750,
+  const incrementRating = () => {
+    if (currentRatingIndex < elo.length - 1) {
+      setCurrentRatingIndex(currentRatingIndex + 1);
+    }
   };
 
-  const handleCurrentRatingChange = (direction) => {
-    setCurrentRatingIndex((prevIndex) => {
-      const newIndex = prevIndex + direction;
-      if (newIndex < 0) return 0;
-      if (newIndex >= elo.length) return elo.length - 1;
-      setDesiredRatingIndex(newIndex);
-      return newIndex;
-    });
+  const decrementRating = () => {
+    if (currentRatingIndex > 0) {
+      setCurrentRatingIndex(currentRatingIndex - 1);
+    }
   };
 
-  const handleDesiredRatingChange = (direction) => {
-    setDesiredRatingIndex((prevIndex) => {
-      const newIndex = prevIndex + direction;
-      if (newIndex < currentRatingIndex) return currentRatingIndex;
-      if (newIndex >= elo.length) return elo.length - 1;
-      return newIndex;
-    });
+  const incrementWins = () => {
+    if (wins < 10) {
+      setWins(wins + 1);
+    }
+  };
+
+  const decrementWins = () => {
+    if (wins > 0) {
+      setWins(wins - 1);
+    }
+  };
+
+  const handleWinsChange = (e) => {
+    const value = Math.max(0, Math.min(10, Number(e.target.value)));
+    setWins(value);
   };
 
   const handleSubmit = (e) => {
@@ -115,17 +122,13 @@ const FiByLevelCalc = () => {
         <div className={styles.item}>
           <Image
             src={images[currentRatingIndex]}
-            width={70}
-            height={70}
-            quality={100}
+            width={32}
+            height={100}
             alt="звания"
           />
           <div className={styles.currentRating}>
             <div className={styles.currentCalc}>
-              <button
-                className={styles.subtract}
-                onClick={() => handleCurrentRatingChange(-1)}
-              >
+              <button className={styles.minus} onClick={decrementRating}>
                 -
               </button>
               <div className={styles.center}>
@@ -134,10 +137,7 @@ const FiByLevelCalc = () => {
                   <span className={styles.span}>{elo[currentRatingIndex]}</span>
                 </div>
               </div>
-              <button
-                className={styles.add}
-                onClick={() => handleCurrentRatingChange(1)}
-              >
+              <button className={styles.plus} onClick={incrementRating}>
                 +
               </button>
             </div>
@@ -154,33 +154,25 @@ const FiByLevelCalc = () => {
         <div className={styles.item}>
           <div className={styles.desiredRating}>
             <div className={styles.desiredCalc}>
-              <button
-                className={styles.subtract}
-                onClick={() => handleDesiredRatingChange(-1)}
-              >
+              <button className={styles.minus} onClick={decrementWins}>
                 -
               </button>
               <div className={styles.center}>
-                <div className={styles.desiredTitle}>Желаемый Рейтинг</div>
+                <div className={styles.desiredTitle}>Кол-во побед</div>
                 <div className={styles.inputWrapper}>
-                  <span className={styles.span}>{elo[desiredRatingIndex]}</span>
+                  <input
+                    className={styles.input}
+                    value={wins}
+                    onChange={handleWinsChange}
+                    min="0"
+                  />
                 </div>
               </div>
-              <button
-                className={styles.add}
-                onClick={() => handleDesiredRatingChange(1)}
-              >
+              <button className={styles.plus} onClick={incrementWins}>
                 +
               </button>
             </div>
           </div>
-          <Image
-            src={images[desiredRatingIndex]}
-            width={70}
-            height={70}
-            quality={100}
-            alt="звания"
-          />
         </div>
       </div>
       <div className={styles.switches}>
@@ -196,7 +188,7 @@ const FiByLevelCalc = () => {
               href={{
                 pathname: "/checkout",
                 query: {
-                  system: "Faceit",
+                  system: "CS2",
                   options: Object.keys(options)
                     .filter((e) => options[e])
                     .map((e) => {
@@ -218,9 +210,9 @@ const FiByLevelCalc = () => {
                       }
                     })
                     .join(),
-                  goal: elo[desiredRatingIndex],
+                  goal: `${wins} побед`,
                   current: elo[currentRatingIndex],
-                  type: "По уровню",
+                  type: "Напарники калибровка",
                   price: calculatePrice(),
                 },
               }}
@@ -235,4 +227,4 @@ const FiByLevelCalc = () => {
   );
 };
 
-export default FiByLevelCalc;
+export default PartnersCalibrationCalc;
