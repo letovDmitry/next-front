@@ -128,7 +128,7 @@ export const ordersApi = createApi({
       invalidatesTags: ["Orders"],
     }),
 
-    createOrder: builder.mutation<
+    createOrderYookassa: builder.mutation<
       IOrder,
       {
         status: string;
@@ -144,7 +144,34 @@ export const ordersApi = createApi({
       query(data) {
         const access_token = Cookies.get("access_token");
         return {
-          url: `/`,
+          url: `/yookassa`,
+          method: "POST",
+          body: data,
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        };
+      },
+      invalidatesTags: ["Orders"],
+    }),
+
+    createOrderEnot: builder.mutation<
+      IOrder,
+      {
+        status: string;
+        custom_fields: {
+          system;
+          goal: string;
+          current: string;
+          type: string;
+          email: string;
+        };
+      }
+    >({
+      query(data) {
+        const access_token = Cookies.get("access_token");
+        return {
+          url: `/enot`,
           method: "POST",
           body: data,
           headers: {
@@ -158,7 +185,8 @@ export const ordersApi = createApi({
 });
 
 export const {
-  useCreateOrderMutation,
+  useCreateOrderEnotMutation,
+  useCreateOrderYookassaMutation,
   useGetNewOrdersForBoosterQuery,
   useGetOrdersForBoosterQuery,
   useGetOrdersForMemberQuery,

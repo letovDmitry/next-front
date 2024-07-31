@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./checkout.module.scss";
 import { useRouter } from "next/navigation";
-import { useCreateOrderMutation } from "@/store/services/ordersApi";
+import { useCreateOrderEnotMutation, useCreateOrderYookassaMutation } from "@/store/services/ordersApi";
 import { useGetMeQuery } from "@/store/services/userApi";
 import Link from "next/link";
 import { Toaster, toast } from 'react-hot-toast';
@@ -25,8 +25,6 @@ const CheckoutPage = ({
   const [isPromocodeFocused, setPromocodeFocused] = useState(false);
   const [activePaymentMethod, setActivePaymentMethod] = useState("");
 
-  console.log(searchParams);
-
   useEffect(() => {
     if (user?.email) setPhone(user.email as string);
   }, [user]);
@@ -35,7 +33,8 @@ const CheckoutPage = ({
 
   const { system, type, current, goal, price, options } = searchParams;
 
-  const [createOrder] = useCreateOrderMutation();
+  const [createOrderEnot] = useCreateOrderEnotMutation();
+  const [createOrderYookassa] = useCreateOrderYookassaMutation();
 
   const clearInput = (setFunction) => {
     setFunction("");
@@ -59,22 +58,41 @@ const CheckoutPage = ({
       toast.error('Выберите Платежную систему');
       return;
     }
-    createOrder({
-      status: "success",
-      custom_fields: {
-        system,
-        goal: goal as string,
-        current: current as string,
-        type: type as string,
-        options: options as string,
-        email: phone,
-        price
-      },
-    })
-      .unwrap()
-      .then((r) => {
-        router.push(r.confirmation_url);
-      });
+    if (activePaymentMethod === 'enot') {
+      createOrderEnot({
+        status: "success",
+        custom_fields: {
+          system,
+          goal: goal as string,
+          current: current as string,
+          type: type as string,
+          options: options as string,
+          email: phone,
+          price
+        },
+      })
+        .unwrap()
+        .then((r) => {
+          router.push(r.url);
+        });
+    } else {
+      createOrderYookassa({
+        status: "success",
+        custom_fields: {
+          system,
+          goal: goal as string,
+          current: current as string,
+          type: type as string,
+          options: options as string,
+          email: phone,
+          price
+        },
+      })
+        .unwrap()
+        .then((r) => {
+          router.push(r.confirmation_url);
+        });
+    }
   };
 
   return (
