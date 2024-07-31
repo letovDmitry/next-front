@@ -179,8 +179,10 @@ const ByWinsCalc = () => {
           handleOptionChange={handleOptionChange}
         />
         <div className={styles.priceColumn}>
-          <div className={styles.priceText}>ИТОГОВАЯ ЦЕНА:</div>
-          <div className={styles.price}>{calculatePrice()} ₽</div>
+          <div className={styles.priceContent}>
+            <div className={styles.priceText}>ИТОГОВАЯ ЦЕНА:</div>
+            <div className={styles.price}>{calculatePrice()} ₽</div>
+          </div>
           <div className={styles.submit}>
             <Link
               href={{

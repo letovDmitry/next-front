@@ -9,10 +9,10 @@ import ByWinsCalc from "../Cs2CalculatorTypes/ByWinsCalc/ByWinsCalc";
 import PartnersInRankCalc from "../Cs2CalculatorTypes/PartnersInRankCalc/PartnersInRankCalc";
 import PartnersInWinCalc from "../Cs2CalculatorTypes/PartnersInWinCalc/PartnersInWinCalc";
 import PartnersCalibrationCalc from "../Cs2CalculatorTypes/PartnersCalibrationCalc/PartnersCalibrationCalc";
-import FiByLevelCalc from "../FaceItCalculatorTypes copy/FiByLevelCalc/FiByLevelCalc";
-import FiByWinsCalc from "../FaceItCalculatorTypes copy/FiByWinsCalc/FiByWinsCalc";
-import FiCalibrationCalc from "../FaceItCalculatorTypes copy/FiCalibrationCalc/FiCalibrationCalc";
-import FiEloCalc from "../FaceItCalculatorTypes copy/FiEloCalc/FiEloCalc";
+import FiByLevelCalc from "../FaceItCalculatorTypes/FiByLevelCalc/FiByLevelCalc";
+import FiByWinsCalc from "../FaceItCalculatorTypes/FiByWinsCalc/FiByWinsCalc";
+import FiCalibrationCalc from "../FaceItCalculatorTypes/FiCalibrationCalc/FiCalibrationCalc";
+import FiEloCalc from "../FaceItCalculatorTypes/FiEloCalc/FiEloCalc";
 
 type BoostScrolledTabsProps = {
   tabNames: { id: string; name: string }[];
