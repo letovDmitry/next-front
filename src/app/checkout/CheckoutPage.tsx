@@ -68,10 +68,11 @@ const CheckoutPage = ({
         type: type as string,
         options: options as string,
         email: phone,
+        price
       },
     })
       .unwrap()
-      .then((_) => {
+      .then((r) => {
         router.push("/payment-success");
       });
   };
