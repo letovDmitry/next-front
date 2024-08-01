@@ -59,7 +59,7 @@ const ChatPage = ({
       date.toLocaleString("ru", {
         month: "long",
         day: "numeric",
-        timezone: "UTC",
+        timeZone: "UTC",
       }) +
       ` в ${
         date.getHours() < 10 ? `0${date.getHours()}` : `${date.getHours()}`
