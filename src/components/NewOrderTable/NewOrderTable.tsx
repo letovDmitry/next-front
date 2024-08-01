@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./Newordertable.module.scss";
 import ReactPaginate from 'react-paginate';
 import {
@@ -7,12 +7,8 @@ import {
 } from "@/store/services/ordersApi";
 
 const NewOrderTable = () => {
-  const { data, refetch } = useGetNewOrdersForBoosterQuery();
+  const { data } = useGetNewOrdersForBoosterQuery();
   const [takeOrder] = useTakeOrderForBoosterMutation();
-
-  useEffect(() => {
-    refetch()
-  }, [])
 
   const [currentPage, setCurrentPage] = useState(0);
   const ordersPerPage = 8;

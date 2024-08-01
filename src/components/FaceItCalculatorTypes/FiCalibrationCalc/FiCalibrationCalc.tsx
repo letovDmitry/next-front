@@ -42,30 +42,10 @@ const FiCalibrationCalc = () => {
 
   const elo = [
     "Без уровня",
-    "1 уровень",
-    "2 уровень",
-    "3 уровень",
-    "4 уровень",
-    "5 уровень",
-    "6 уровень",
-    "7 уровень",
-    "8 уровень",
-    "9 уровень",
-    "10 уровень",
   ];
 
   const images = [
     "/calc/faceit/0.png",
-    "/calc/faceit/1.png",
-    "/calc/faceit/2.png",
-    "/calc/faceit/3.png",
-    "/calc/faceit/4.png",
-    "/calc/faceit/5.png",
-    "/calc/faceit/6.png",
-    "/calc/faceit/7.png",
-    "/calc/faceit/8.png",
-    "/calc/faceit/9.png",
-    "/calc/faceit/10.png",
   ];
 
   const incrementRating = () => {
@@ -93,8 +73,10 @@ const FiCalibrationCalc = () => {
   };
 
   const handleWinsChange = (e) => {
-    const value = Math.max(0, Math.min(10, Number(e.target.value)));
-    setWins(value);
+    const value = e.target.value;
+    if (value === "" || (Number(value) >= 0 && Number(value) <= 10)) {
+      setWins(value === "" ? 0 : Number(value));
+    }
   };
 
   const handleSubmit = (e) => {

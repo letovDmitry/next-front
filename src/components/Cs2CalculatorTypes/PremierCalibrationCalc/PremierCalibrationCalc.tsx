@@ -55,8 +55,10 @@ const PremierCalibrationCalc = () => {
   };
 
   const handleWinsChange = (e) => {
-    const value = Math.max(0, Math.min(10, Number(e.target.value)));
-    setWins(value);
+    const value = e.target.value;
+    if (value === "" || (Number(value) >= 0 && Number(value) <= 10)) {
+      setWins(value === "" ? 0 : Number(value));
+    }
   };
 
   const handleSubmit = (e) => {

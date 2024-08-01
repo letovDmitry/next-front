@@ -81,7 +81,9 @@ const FiByWinsCalc = () => {
   };
 
   const incrementWins = () => {
-    setWins(wins + 1);
+    if (wins < 10) {
+      setWins(wins + 1);
+    }
   };
 
   const decrementWins = () => {
@@ -91,8 +93,10 @@ const FiByWinsCalc = () => {
   };
 
   const handleWinsChange = (e) => {
-    const value = Math.max(0, Number(e.target.value));
-    setWins(value);
+    const value = e.target.value;
+    if (value === "" || (Number(value) >= 0 && Number(value) <= 10)) {
+      setWins(value === "" ? 0 : Number(value));
+    }
   };
 
   const handleSubmit = (e) => {

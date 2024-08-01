@@ -25,6 +25,8 @@ const CheckoutPage = ({
   const [isPromocodeFocused, setPromocodeFocused] = useState(false);
   const [activePaymentMethod, setActivePaymentMethod] = useState("");
 
+  console.log(searchParams);
+
   useEffect(() => {
     if (user?.email) setPhone(user.email as string);
   }, [user]);

@@ -80,7 +80,6 @@ body {
 
 
 .react-tabs {
-  // margin-top: 100px;
   @media (max-width: 600px) {
         margin-top: 0;
   }
@@ -106,17 +105,20 @@ body {
   text-transform: uppercase;
   height: 80px;
   letter-spacing: 1px;
+  padding: 10px!important;
   @media (max-width: 480px) {
     font-size: 14px;
   }
 }
 
 .react-tabs__tab--selected {
-
-  border-bottom: 2px solid $primaryBlue;
+  
+  background-color: $primaryBlue;
 }
 
-
+#calcs {
+  padding-top: 60px!important;
+}
 
 .rts___tabs___container {
   padding: 0!important;

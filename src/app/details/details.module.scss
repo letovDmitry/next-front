@@ -1,0 +1,42 @@
+.details {
+    padding: 100px 0;
+}
+
+.body {
+    margin-top: 100px;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.title {
+    text-align: center;
+    font-size: 50px;
+    @media (max-width:768px) {
+        font-size: 35px;
+        line-height: 36px;
+        text-align: left;
+    }
+    @media (max-width:520px) {
+        font-size: 21px;
+        line-height: 36px;
+    }
+}
+
+
+.heading {
+    margin-right: 10px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.item {
+    font-size: 20px;
+}
+
+.wrap {
+    width: 100%;
+}

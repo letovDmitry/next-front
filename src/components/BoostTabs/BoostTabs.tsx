@@ -1,6 +1,7 @@
 import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import BoostCounter from '../BoostCounter/BoostCounter';
+// import styles from '../Calculator/calculator.module.scss';
 
 const tabNamesCs = [
   { id: 'cs2_premier', name: "Премьер" },

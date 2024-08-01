@@ -100,102 +100,33 @@ const FiEloCalc = () => {
     return price.toFixed(2);
   };
 
-  const handleOptionChange = (option: string) => {
+  const handleOptionChange = (option) => {
     setOptions((prevOptions) => ({
       ...prevOptions,
       [option]: !prevOptions[option],
     }));
   };
 
-  const handleAddCurrentRating = () => {
-    setCurrentRating((prevRating) => {
-      if (prevRating === 2975 || prevRating === 3000) {
-        const newRating = prevRating;
-        setDesiredRating((desired) => Math.max(desired));
-        return newRating;
-      } else {
-        const newRating = prevRating + 25;
-        setDesiredRating((desired) => Math.max(desired, newRating + 25));
-        return newRating;
-      }
-    });
-  };
-
-  const handleSubtractCurrentRating = () => {
-    setCurrentRating((prevRating) => {
-      const newRating = Math.max(0, prevRating - 25);
-      setDesiredRating((prevDesired) => Math.max(newRating + 25, prevDesired));
-      return newRating;
-    });
-  };
-
-  const handleAddDesiredRating = () => {
-    if (desiredRating === 3000) {
-      setDesiredRating((prevRating) => Math.max(currentRating, prevRating));
-    } else {
-      setDesiredRating((prevRating) =>
-        Math.max(currentRating + 25, prevRating + 25)
-      );
-    }
+  const updateRatings = (currentDelta, desiredDelta) => {
+    setCurrentRating((prev) =>
+      Math.min(3000, Math.max(0, prev + currentDelta))
+    );
+    setDesiredRating((prev) =>
+      Math.min(3000, Math.max(currentRating + 25, prev + desiredDelta))
+    );
     setErrorMessage("");
   };
 
-  const handleSubtractDesiredRating = () => {
-    if (currentRating === 3000) {
-      setDesiredRating((prevRating) => Math.max(currentRating, prevRating));
-    } else {
-      setDesiredRating((prevRating) =>
-        Math.max(currentRating + 25, prevRating - 25)
-      );
-    }
-  };
-
-  const handleCurrentRatingChange = (e) => {
-    const numericValue = parseInt(e.target.value) || 0;
-    const value = Math.max(0, Math.min(3000, numericValue));
-
-    if (/^[0-9]{0,5}$/.test(value.toString())) {
-      setCurrentRating(value);
-      if (value === 3000) {
-        setDesiredRating((desired) => Math.max(desired, value));
-      } else {
-        setDesiredRating((desired) => Math.max(desired, value + 25));
-      }
+  const handleRatingChange = (setter, adjuster) => (e) => {
+    const value = parseInt(e.target.value) || 0;
+    if (value >= 0 && value <= 3000) {
+      setter(value);
+      adjuster(value);
       setErrorMessage("");
     }
   };
 
-  const handleDesiredRatingChange = (e) => {
-    const value = e.target.value.trim();
-    if (value === "") {
-      setDesiredRating(currentRating + 25);
-      setErrorMessage("Желаемый рейтинг не может быть пустым.");
-    } else {
-      const numericValue = parseInt(value);
-      if (
-        isNaN(numericValue) ||
-        numericValue < currentRating ||
-        numericValue > 35000
-      ) {
-        setErrorMessage(
-          "Желаемый рейтинг должен быть числом между текущим рейтингом и 35000."
-        );
-      } else if (numericValue < currentRating + 25) {
-        setErrorMessage("Минимальный заказ 25 Elo.");
-      } else {
-        setDesiredRating(numericValue);
-        setErrorMessage("");
-      }
-    }
-  };
-
-  const handleDesiredRatingInputChange = (e) => {
-    const value = e.target.value;
-    if (/^[0-9]{0,4}$/.test(value)) {
-      setDesiredRating(value);
-      setErrorMessage("");
-    }
-  };
+  const price = calculatePrice();
 
   const handleSubmit = (e) => {
     if (calculatePrice() === "0.00") {
@@ -218,7 +149,7 @@ const FiEloCalc = () => {
             <div className={styles.currentCalc}>
               <button
                 className={styles.subtract}
-                onClick={handleSubtractCurrentRating}
+                onClick={() => updateRatings(-25, 0)}
               >
                 -25
               </button>
@@ -228,12 +159,17 @@ const FiEloCalc = () => {
                   <input
                     className={styles.input}
                     value={currentRating}
-                    onChange={handleCurrentRatingChange}
+                    onChange={handleRatingChange(setCurrentRating, (val) =>
+                      setDesiredRating(Math.max(desiredRating, val + 25))
+                    )}
                   />
                   <span className={styles.span}>ELO</span>
                 </div>
               </div>
-              <button className={styles.add} onClick={handleAddCurrentRating}>
+              <button
+                className={styles.add}
+                onClick={() => updateRatings(25, 25)}
+              >
                 +25
               </button>
             </div>
@@ -252,7 +188,7 @@ const FiEloCalc = () => {
             <div className={styles.desiredCalc}>
               <button
                 className={styles.subtract}
-                onClick={handleSubtractDesiredRating}
+                onClick={() => updateRatings(0, -25)}
               >
                 -25
               </button>
@@ -262,13 +198,16 @@ const FiEloCalc = () => {
                   <input
                     className={styles.input}
                     value={desiredRating}
-                    onChange={handleDesiredRatingInputChange}
-                    onBlur={handleDesiredRatingChange}
+                    onChange={handleRatingChange(setDesiredRating, () => {})}
+                    onBlur={handleRatingChange(setDesiredRating, () => {})}
                   />
                   <span className={styles.span}>ELO</span>
                 </div>
               </div>
-              <button className={styles.add} onClick={handleAddDesiredRating}>
+              <button
+                className={styles.add}
+                onClick={() => updateRatings(0, 25)}
+              >
                 +25
               </button>
             </div>

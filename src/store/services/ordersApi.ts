@@ -27,12 +27,10 @@ export interface IOrder {
 
   boosterId?: number;
   booster: IUser;
-
-  seenBy?: IUser[]
 }
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://anyboost.ru/api/order",
+  baseUrl: "http://localhost:3001/order",
 });
 
 const baseQueryWithReauth: BaseQueryFn<
@@ -128,33 +126,6 @@ export const ordersApi = createApi({
       invalidatesTags: ["Orders"],
     }),
 
-    createOrderYookassa: builder.mutation<
-      IOrder,
-      {
-        status: string;
-        custom_fields: {
-          system;
-          goal: string;
-          current: string;
-          type: string;
-          email: string;
-        };
-      }
-    >({
-      query(data) {
-        const access_token = Cookies.get("access_token");
-        return {
-          url: `/yookassa`,
-          method: "POST",
-          body: data,
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        };
-      },
-      invalidatesTags: ["Orders"],
-    }),
-
     createOrderEnot: builder.mutation<
       IOrder,
       {
@@ -172,6 +143,33 @@ export const ordersApi = createApi({
         const access_token = Cookies.get("access_token");
         return {
           url: `/enot`,
+          method: "POST",
+          body: data,
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        };
+      },
+      invalidatesTags: ["Orders"],
+    }),
+
+    createOrderYookassa: builder.mutation<
+      IOrder,
+      {
+        status: string;
+        custom_fields: {
+          system;
+          goal: string;
+          current: string;
+          type: string;
+          email: string;
+        };
+      }
+    >({
+      query(data) {
+        const access_token = Cookies.get("access_token");
+        return {
+          url: `/yookassa`,
           method: "POST",
           body: data,
           headers: {

@@ -17,7 +17,7 @@ const Footer = () => {
                     <div className={styles.title}>Мы в соц. сетях</div>
                     <div className={styles.icons}>
                         <a href='https://t.me/anyboost_bot'><Image src='/footer/tg.svg' alt='виза' width={45} height={45}></Image></a>
-                        <a href='https://discord.gg/JpBGEfrc'><Image src='/footer/discord.svg' alt='виза' width={45} height={45}></Image></a>
+                        <a href='https://discord.gg/s2PgPFKXey'><Image src='/footer/discord.svg' alt='виза' width={45} height={45}></Image></a>
                         <a href='https://vk.com/anyboostclub'><Image src='/footer/vk.svg' alt='виза' width={45} height={45}></Image></a>
                     </div>
                 </div>
@@ -25,6 +25,7 @@ const Footer = () => {
             <div className={styles.links}>
                 <div className={styles.main}>
                     <Link className={styles.link} href='/contract-offer'>Договор оферты</Link>
+                    <Link className={styles.link} href='/details'>Реквизиты</Link>
                 </div>
                 <div className={styles.privacy}>
                     <Link className={styles.link} href='/privacy-policy'>Политика конфиденциальности</Link>
