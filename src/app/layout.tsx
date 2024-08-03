@@ -19,7 +19,8 @@ export const metadata: Metadata = {
   description: "Буст в КС 2 с Anyboost позволяет получить Всемирную Элиту в матчмейкинге, до 3500 elo на Faceit, Золотой ранг в Premier и огромный игровой опыт в играх с нашей командой!",
   other: {
     enot: "821a8e52",
-    "lava-verify": "3d64b9f0daa43f61"
+    "lava-verify": "3d64b9f0daa43f61",
+    "selfwork.ru": "DxOvbTQQZtW3cuP8wXpxEu0qYby4q153y8nIKn8r4eZsmwaDEC"
   }
 };
 
