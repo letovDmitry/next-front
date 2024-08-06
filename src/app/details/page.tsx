@@ -14,6 +14,10 @@ const page = () => {
                <div className={styles.wrap}>
                 <h1 className={styles.title}>Реквизиты</h1>
                   <div className={styles.body}>
+                  <div className={styles.item}>
+                        <span className={styles.heading}>Самозанятый:</span>
+                        Сертаков.Н.А
+                    </div>
                     <div className={styles.item}>
                         <span className={styles.heading}>ИНН:</span>
                         910102619707
