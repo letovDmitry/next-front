@@ -51,3 +51,12 @@
         font-size: 22px;
     }
 }
+
+.info {
+    margin-top: 50px;
+    font-size: 20px;
+    line-height: 30px;
+    @media (max-width:520px) {
+        font-size: 22px;
+    }
+}
