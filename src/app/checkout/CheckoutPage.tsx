@@ -101,7 +101,7 @@ const CheckoutPage = ({
       //   .then((r) => {
       //     console.log(r)
       //   });
-      router.push(`/api/order/selfwork?system=${system}&goal=${goal}&current=${current}&type=${type}&options=${options}&email=${email}&price=${price}`)
+      router.push(`https://anyboost.ru/api/order/selfwork?system=${system}&goal=${goal}&current=${current}&type=${type}&options=${options}&email=${phone}&price=${price}`)
     }
   };
 
