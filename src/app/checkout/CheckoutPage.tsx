@@ -24,6 +24,7 @@ const CheckoutPage = ({
   const [isLoginFocused, setLoginFocused] = useState(false);
   const [isPromocodeFocused, setPromocodeFocused] = useState(false);
   const [activePaymentMethod, setActivePaymentMethod] = useState("");
+  const [html, setHTML] = useState({__html: ""});
 
   console.log(searchParams);
 
@@ -92,10 +93,12 @@ const CheckoutPage = ({
       })
         .unwrap()
         .then((r) => {
-          // router.push(r.confirmation_url);
+          setHTML({ __html: r })
         });
     }
   };
+
+  if (html.__html) return <div dangerouslySetInnerHTML={html} />;
 
   return (
     <>
