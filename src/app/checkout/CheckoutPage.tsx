@@ -93,10 +93,12 @@ const CheckoutPage = ({
       })
         .unwrap()
         .then((r) => {
-          setHTML({ __html: r })
+          setHTML({ __html: `${r}` })
         });
     }
   };
+
+  console.log(html)
 
   if (html.__html) return <div dangerouslySetInnerHTML={html} />;
 
