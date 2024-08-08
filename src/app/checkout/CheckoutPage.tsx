@@ -8,6 +8,12 @@ import { useGetMeQuery } from "@/store/services/userApi";
 import Link from "next/link";
 import { Toaster, toast } from 'react-hot-toast';
 
+function htmlDecode(input){
+  var e = document.createElement('div');
+  e.innerHTML = input;
+  return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+}
+
 const CheckoutPage = ({
   searchParams,
 }: {
@@ -93,7 +99,7 @@ const CheckoutPage = ({
       })
         .unwrap()
         .then((r) => {
-          setHTML({ __html: `${r}`.replace(/<[^>]*>/g, '') })
+          setHTML({ __html: htmlDecode(r) })
         });
     }
   };
