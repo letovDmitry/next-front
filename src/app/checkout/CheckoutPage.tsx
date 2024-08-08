@@ -85,28 +85,29 @@ const CheckoutPage = ({
           router.push(r.url);
         });
     } else {
-      createOrderSelfwork({
-        status: "success",
-        custom_fields: {
-          system,
-          goal: goal as string,
-          current: current as string,
-          type: type as string,
-          options: options as string,
-          email: phone,
-          price
-        },
-      })
-        .unwrap()
-        .then((r) => {
-          setHTML({ __html: htmlDecode(r) })
-        });
+      // createOrderSelfwork({
+      //   status: "success",
+      //   custom_fields: {
+      //     system,
+      //     goal: goal as string,
+      //     current: current as string,
+      //     type: type as string,
+      //     options: options as string,
+      //     email: phone,
+      //     price
+      //   },
+      // })
+      //   .unwrap()
+      //   .then((r) => {
+      //     console.log(r)
+      //   });
+      router.push(`/api/order/selfwork?system=${system}&goal=${goal}&current=${current}&type=${type}&options=${options}&email=${email}&price=${price}`)
     }
   };
 
   console.log(html)
 
-  if (html.__html) return <div dangerouslySetInnerHTML={html} />;
+  if (html.__html) return html.__html;
 
   return (
     <>
