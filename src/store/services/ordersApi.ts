@@ -153,6 +153,33 @@ export const ordersApi = createApi({
       invalidatesTags: ["Orders"],
     }),
 
+    createOrderSelfwork: builder.mutation<
+      IOrder,
+      {
+        status: string;
+        custom_fields: {
+          system;
+          goal: string;
+          current: string;
+          type: string;
+          email: string;
+        };
+      }
+    >({
+      query(data) {
+        const access_token = Cookies.get("access_token");
+        return {
+          url: `/selfwork`,
+          method: "POST",
+          body: data,
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        };
+      },
+      invalidatesTags: ["Orders"],
+    }),
+
     createOrderYookassa: builder.mutation<
       IOrder,
       {
@@ -190,4 +217,5 @@ export const {
   useGetOrdersForMemberQuery,
   useTakeOrderForBoosterMutation,
   useCompleteOrderForBoosterMutation,
+  useCreateOrderSelfworkMutation
 } = ordersApi;

@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./checkout.module.scss";
 import { useRouter } from "next/navigation";
-import { useCreateOrderEnotMutation } from "@/store/services/ordersApi";
+import { useCreateOrderEnotMutation, useCreateOrderSelfworkMutation } from "@/store/services/ordersApi";
 import { useGetMeQuery } from "@/store/services/userApi";
 import Link from "next/link";
 import { Toaster, toast } from 'react-hot-toast';
@@ -35,7 +35,8 @@ const CheckoutPage = ({
 
   const { system, type, current, goal, price, options } = searchParams;
 
-  const [createOrder] = useCreateOrderEnotMutation();
+  const [createOrderEnot] = useCreateOrderEnotMutation();
+  const [createOrderSelfwork] = useCreateOrderSelfworkMutation();
 
   const clearInput = (setFunction) => {
     setFunction("");
@@ -59,21 +60,41 @@ const CheckoutPage = ({
       toast.error('Выберите Платежную систему');
       return;
     }
-    createOrder({
-      status: "success",
-      custom_fields: {
-        system,
-        goal: goal as string,
-        current: current as string,
-        type: type as string,
-        options: options as string,
-        email: phone,
-      },
-    })
-      .unwrap()
-      .then((_) => {
-        router.push("/payment-success");
-      });
+    if (activePaymentMethod === 'morune') {
+      createOrderEnot({
+        status: "success",
+        custom_fields: {
+          system,
+          goal: goal as string,
+          current: current as string,
+          type: type as string,
+          options: options as string,
+          email: phone,
+          price
+        },
+      })
+        .unwrap()
+        .then((r) => {
+          router.push(r.url);
+        });
+    } else {
+      createOrderSelfwork({
+        status: "success",
+        custom_fields: {
+          system,
+          goal: goal as string,
+          current: current as string,
+          type: type as string,
+          options: options as string,
+          email: phone,
+          price
+        },
+      })
+        .unwrap()
+        .then((r) => {
+          // router.push(r.confirmation_url);
+        });
+    }
   };
 
   return (
