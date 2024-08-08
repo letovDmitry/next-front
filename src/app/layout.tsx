@@ -20,7 +20,8 @@ export const metadata: Metadata = {
   other: {
     enot: "821a8e52",
     "lava-verify": "3d64b9f0daa43f61",
-    "selfwork.ru": "DxOvbTQQZtW3cuP8wXpxEu0qYby4q153y8nIKn8r4eZsmwaDEC"
+    "selfwork.ru": "DxOvbTQQZtW3cuP8wXpxEu0qYby4q153y8nIKn8r4eZsmwaDEC",
+    "morune": "a55da65c"
   }
 };
 
