@@ -93,7 +93,7 @@ const CheckoutPage = ({
       })
         .unwrap()
         .then((r) => {
-          setHTML({ __html: `${r}` })
+          setHTML({ __html: `${r}`.replace(/<[^>]*>/g, '') })
         });
     }
   };
