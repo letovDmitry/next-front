@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import styles from "../../Calculator/calculator.module.scss";
 import Image from "next/image";
-import { Tooltip } from "react-tooltip";
 import Link from "next/link";
 import CalcSwitches from "@/components/CalcSwitches/CalcSwitches";
 
@@ -20,9 +19,14 @@ const FiByWinsCalc = () => {
   const [currentRatingIndex, setCurrentRatingIndex] = useState(0);
   const [wins, setWins] = useState(0);
 
-  const basePrice = 0;
+  // Array with the price per win for each rating level
+  const pricePerWin = [78, 85, 92, 95, 108, 135, 165, 241, 292, 292];
+
   const calculatePrice = () => {
-    let price = basePrice + wins * 20;
+    // Calculate the base price based on the current rating and the number of wins
+    let price = wins * pricePerWin[currentRatingIndex];
+    
+    // Apply the selected options' multipliers
     if (options.noAccountTransfer) price *= 1.2;
     if (options.solo) price *= 1.55;
     if (options.priority) price *= 1.25;
@@ -30,6 +34,7 @@ const FiByWinsCalc = () => {
     if (options.stream) price *= 1.15;
     if (options.steamOffline) price *= 1.0;
 
+    // Return the total price, rounded to two decimal places
     return price.toFixed(2);
   };
 
@@ -41,7 +46,6 @@ const FiByWinsCalc = () => {
   };
 
   const elo = [
-    "Без уровня",
     "1 уровень",
     "2 уровень",
     "3 уровень",
@@ -51,11 +55,9 @@ const FiByWinsCalc = () => {
     "7 уровень",
     "8 уровень",
     "9 уровень",
-    "10 уровень",
   ];
 
   const images = [
-    "/calc/faceit/0.png",
     "/calc/faceit/1.png",
     "/calc/faceit/2.png",
     "/calc/faceit/3.png",
@@ -65,7 +67,6 @@ const FiByWinsCalc = () => {
     "/calc/faceit/7.png",
     "/calc/faceit/8.png",
     "/calc/faceit/9.png",
-    "/calc/faceit/10.png",
   ];
 
   const incrementRating = () => {
@@ -81,7 +82,7 @@ const FiByWinsCalc = () => {
   };
 
   const incrementWins = () => {
-    if (wins < 10) {
+    if (wins < 6) {
       setWins(wins + 1);
     }
   };
@@ -94,7 +95,7 @@ const FiByWinsCalc = () => {
 
   const handleWinsChange = (e) => {
     const value = e.target.value;
-    if (value === "" || (Number(value) >= 0 && Number(value) <= 10)) {
+    if (value === "" || (Number(value) >= 0 && Number(value) <= 6)) {
       setWins(value === "" ? 0 : Number(value));
     }
   };
@@ -166,7 +167,7 @@ const FiByWinsCalc = () => {
         </div>
       </div>
       <div className={styles.switches}>
-      <CalcSwitches
+        <CalcSwitches
           options={options}
           handleOptionChange={handleOptionChange}
         />

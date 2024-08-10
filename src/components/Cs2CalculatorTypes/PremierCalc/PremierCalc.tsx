@@ -88,9 +88,9 @@ const PremierCalc = () => {
   const numericPrice = parseFloat(price);
 
   const handleSubmit = (e) => {
-    if (calculatePrice() === "0.00") {
+    if (desiredRating < 200 || calculatePrice() === "0.00") {
       e.preventDefault();
-    }
+    } 
   };
 
   return (

@@ -129,9 +129,9 @@ const FiEloCalc = () => {
   const price = calculatePrice();
 
   const handleSubmit = (e) => {
-    if (calculatePrice() === "0.00") {
+    if (desiredRating < 25 || calculatePrice() === "0.00") {
       e.preventDefault();
-    }
+    } 
   };
 
   return (

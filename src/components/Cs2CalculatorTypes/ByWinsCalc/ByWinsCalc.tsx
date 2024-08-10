@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import styles from "../../Calculator/calculator.module.scss";
 import Image from "next/image";
-import { Tooltip } from "react-tooltip";
 import Link from "next/link";
 import CalcSwitches from "@/components/CalcSwitches/CalcSwitches";
 
@@ -19,15 +18,37 @@ const ByWinsCalc = () => {
 
   const [currentRatingIndex, setCurrentRatingIndex] = useState(0);
   const [wins, setWins] = useState(0);
+  const pricePerWin = [
+    48, // Серебро-1
+    48, // Серебро-2
+    48, // Серебро-3
+    48, // Серебро-4
+    48, // Серебро-Элита
+    48, // Серебро-Великий Магистр
+    70, // Золотая Звезда-1
+    70, // Золотая Звезда-2
+    70, // Золотая Звезда-3
+    70, // Золотая Звезда-Магистр
+    100, // Магистр Хранитель-1
+    100, // Магистр Хранитель-2
+    100, // Магистр Хранитель-Элита
+    130, // Заслуженный Магистр-Хранитель
+    174, // Легендарный Беркут
+    240, // Легендарный Беркут-Магистр
+    330, // Великий Магистр Высшего Ранга
+    385, // Всемирная Элита
+  ];
 
-  const basePrice = 0;
   const calculatePrice = () => {
-    let price = basePrice + wins * 20;
+    let price = wins * pricePerWin[currentRatingIndex];
+    
+    if (options.noAccountTransfer) price *= 1.2;
     if (options.solo) price *= 1.55;
     if (options.priority) price *= 1.25;
     if (options.express) price *= 1.6;
     if (options.stream) price *= 1.15;
     if (options.steamOffline) price *= 1.0;
+
 
     return price.toFixed(2);
   };
@@ -94,7 +115,7 @@ const ByWinsCalc = () => {
   };
 
   const incrementWins = () => {
-    if (wins < 10) {
+    if (wins < 4) {
       setWins(wins + 1);
     }
   };
@@ -107,7 +128,7 @@ const ByWinsCalc = () => {
 
   const handleWinsChange = (e) => {
     const value = e.target.value;
-    if (value === "" || (Number(value) >= 0 && Number(value) <= 10)) {
+    if (value === "" || (Number(value) >= 0 && Number(value) <= 4)) {
       setWins(value === "" ? 0 : Number(value));
     }
   };
@@ -126,6 +147,7 @@ const ByWinsCalc = () => {
             src={images[currentRatingIndex]}
             width={32}
             height={100}
+            quality={100}
             alt="звания"
           />
           <div className={styles.currentRating}>
@@ -178,7 +200,7 @@ const ByWinsCalc = () => {
         </div>
       </div>
       <div className={styles.switches}>
-      <CalcSwitches
+        <CalcSwitches
           options={options}
           handleOptionChange={handleOptionChange}
         />
